@@ -2,3 +2,4 @@ Dockerfile
 Makefile
 vendor/gems
 .bundle
+bin
