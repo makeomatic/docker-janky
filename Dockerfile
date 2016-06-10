@@ -8,7 +8,12 @@ WORKDIR /usr/src/app
 # cache gems
 COPY Gemfile /usr/src/app/
 COPY Gemfile.lock /usr/src/app/
-RUN bundle install --path vendor/gems --binstubs
+RUN \
+  apk add --no-cache --virtual .buildDeps \
+    g++ \
+    make \
+  && bundle install --path vendor/gems --binstubs
+  && apk del .buildDeps
 
 # copy code
 COPY . /usr/src/app

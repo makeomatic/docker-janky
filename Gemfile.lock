@@ -38,7 +38,6 @@ GEM
     nap (0.8.0)
     octokit (4.3.0)
       sawyer (~> 0.7.0, >= 0.5.3)
-    pg (0.18.4)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -73,7 +72,6 @@ PLATFORMS
 
 DEPENDENCIES
   janky (~> 0.11.1)
-  pg
   thin
 
 BUNDLED WITH
