@@ -14,6 +14,7 @@ RUN \
     make \
     libstdc++ \
     mysql-client \
+    git \
   && bundle install --path vendor/gems --binstubs \
   && apk add --no-cache --virtual .runDeps \
     libstdc++ \
