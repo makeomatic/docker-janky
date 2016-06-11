@@ -1,8 +1,8 @@
-FROM ruby:2.3.1-alpine
+FROM makeomatic/ruby:2.3
 
-RUN bundle config --global frozen 1
+RUN bundle config --global frozen 1 \
+    && mkdir -p /usr/src/app
 
-RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # cache gems
@@ -18,11 +18,13 @@ RUN \
   && bundle install --path vendor/gems --binstubs \
   && apk add --no-cache --virtual .runDeps \
     libstdc++ \
-    mariadb-client \
+    mariadb-client-libs \
   && apk del .buildDeps
 
 # copy code
 COPY . /usr/src/app
+RUN chown ruby:ruby /usr/src/app
+USER ruby
 
 # port + start
 EXPOSE 8080
