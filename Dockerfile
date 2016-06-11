@@ -13,12 +13,12 @@ RUN \
     g++ \
     make \
     libstdc++ \
-    mysql-client \
+    mariadb-dev \
     git \
   && bundle install --path vendor/gems --binstubs \
   && apk add --no-cache --virtual .runDeps \
     libstdc++ \
-    mysql-client \
+    mariadb-client \
   && apk del .buildDeps
 
 # copy code
