@@ -12,7 +12,12 @@ RUN \
   apk add --no-cache --virtual .buildDeps \
     g++ \
     make \
+    libstdc++ \
+    mysql-client \
   && bundle install --path vendor/gems --binstubs \
+  && apk add --no-cache --virtual .runDeps \
+    libstdc++ \
+    mysql-client \
   && apk del .buildDeps
 
 # copy code
