@@ -1,4 +1,4 @@
-FROM makeomatic/ruby:2.3
+FROM makeomatic/ruby:v2.3.1
 
 RUN bundle config --global frozen 1 \
     && mkdir -p /usr/src/app
