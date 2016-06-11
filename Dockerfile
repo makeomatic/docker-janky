@@ -12,7 +12,7 @@ RUN \
   apk add --no-cache --virtual .buildDeps \
     g++ \
     make \
-  && bundle install --path vendor/gems --binstubs
+  && bundle install --path vendor/gems --binstubs \
   && apk del .buildDeps
 
 # copy code
