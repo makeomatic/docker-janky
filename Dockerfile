@@ -3,7 +3,7 @@ FROM makeomatic/ruby:v2.3.1
 WORKDIR /usr/src/app
 
 # cache gems
-COPY Gemfile* .
+COPY Gemfile* ./
 RUN \
   bundle config --global frozen 1 \
   && mkdir -p /usr/src/app \
@@ -24,7 +24,7 @@ RUN \
   && apk del .buildDeps
 
 # copy code
-COPY . .
+COPY . ./
 RUN \
     chown -R ruby:ruby /usr/src/app \
     && chmod +x ./entrypoint.sh
