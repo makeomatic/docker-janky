@@ -28,4 +28,5 @@ USER ruby
 
 # port + start
 EXPOSE 8080
-CMD ["bundle", "exec", "thin", "start", "-p", "8080"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["thin", "start", "-p", "8080"]
