@@ -15,10 +15,12 @@ RUN \
     libstdc++ \
     mariadb-dev \
     git \
+    bash \
   && bundle install --path vendor/gems --binstubs \
   && apk add --no-cache --virtual .runDeps \
     libstdc++ \
     mariadb-client-libs \
+    bash \
   && apk del .buildDeps
 
 # copy code

@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/bin/bash
+
+set -e
+#set the DEBUG env variable to turn on debugging
+[[ -n "$DEBUG" ]] && set -x
 
 pid=0
 
@@ -11,7 +15,7 @@ launch_migration() {
 }
 
 # background
-launch_migration
+launch_migration &
 
 # SIGTERM & SIGINT -handler
 # https://medium.com/@gchudnov/trapping-signals-in-docker-containers-7a57fdda7d86#.2rkt303t7
