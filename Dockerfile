@@ -15,12 +15,10 @@ RUN \
     libstdc++ \
     mariadb-dev \
     git \
-    bash \
   && bundle install --path vendor/gems --binstubs \
   && apk add --no-cache --virtual .runDeps \
     libstdc++ \
     mariadb-client-libs \
-    bash \
   && apk del .buildDeps
 
 # copy code
@@ -31,4 +29,4 @@ USER ruby
 # port + start
 EXPOSE 8080
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
-CMD ["thin", "start", "-p", "8080"]
+CMD ["thin", "-p", "8080", "start"]
