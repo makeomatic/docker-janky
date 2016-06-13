@@ -3,7 +3,7 @@ FROM makeomatic/ruby:v2.3.1
 WORKDIR /usr/src/app
 
 # cache gems
-COPY Gemfile* ./
+COPY . ./
 RUN \
   bundle config --global frozen 1 \
   && mkdir -p /usr/src/app \
@@ -21,17 +21,13 @@ RUN \
     mariadb-client-libs \
     openssl \
     ca-certificates \
-  && apk del .buildDeps
-
-# copy code
-COPY . ./
-RUN \
-    chown -R ruby:ruby /usr/src/app \
-    && chmod +x ./entrypoint.sh
+  && apk del .buildDeps \
+  && chown -R ruby:ruby /usr/src/app \
+  && chmod +x ./entrypoint.sh
 
 USER ruby
 
 # port + start
 EXPOSE 8080
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 CMD ["thin", "-p", "8080", "start"]
