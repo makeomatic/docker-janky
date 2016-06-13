@@ -6,16 +6,11 @@ set -e
 
 pid=0
 
-launch_migration() {
-  # run migration, idempotent?
-  rake db:migrate || exit 128
+# launch migration
+rake db:migrate & pid="$!"
 
-  # start the app
-  /bin/sh -c "bundle exec $@" & pid="$!"
-}
-
-# background
-launch_migration &
+# launch db
+/bin/sh -c "wait $pid && /bin/sh -c \"bundle exec $@\"" & pid="$!"
 
 # SIGTERM & SIGINT -handler
 # https://medium.com/@gchudnov/trapping-signals-in-docker-containers-7a57fdda7d86#.2rkt303t7
