@@ -23,7 +23,10 @@ RUN \
 
 # copy code
 COPY . /usr/src/app
-RUN chown -R ruby:ruby /usr/src/app
+RUN \
+    chown -R ruby:ruby /usr/src/app \
+    && chmod +x ./entrypoint.sh
+
 USER ruby
 
 # port + start
