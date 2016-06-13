@@ -23,7 +23,7 @@ RUN \
 
 # copy code
 COPY . /usr/src/app
-RUN chown ruby:ruby /usr/src/app
+RUN chown -R ruby:ruby /usr/src/app
 USER ruby
 
 # port + start
