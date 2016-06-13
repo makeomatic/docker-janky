@@ -1,15 +1,13 @@
 FROM makeomatic/ruby:v2.3.1
 
-RUN bundle config --global frozen 1 \
-    && mkdir -p /usr/src/app
-
 WORKDIR /usr/src/app
 
 # cache gems
-COPY Gemfile /usr/src/app/
-COPY Gemfile.lock /usr/src/app/
+COPY Gemfile* .
 RUN \
-  apk add --no-cache --virtual .buildDeps \
+  bundle config --global frozen 1 \
+  && mkdir -p /usr/src/app \
+  && apk add --no-cache --virtual .buildDeps \
     g++ \
     make \
     libstdc++ \
@@ -26,7 +24,7 @@ RUN \
   && apk del .buildDeps
 
 # copy code
-COPY . /usr/src/app
+COPY . .
 RUN \
     chown -R ruby:ruby /usr/src/app \
     && chmod +x ./entrypoint.sh
