@@ -2,7 +2,7 @@
 
 pid=0
 
-function launch_migration {
+launch_migration() {
   # run migration, idempotent?
   rake db:migrate > /var/logs/db.init.log || exit 128
 
