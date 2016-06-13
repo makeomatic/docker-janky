@@ -28,5 +28,5 @@ USER ruby
 
 # port + start
 EXPOSE 8080
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 CMD ["thin", "start", "-p", "8080"]
