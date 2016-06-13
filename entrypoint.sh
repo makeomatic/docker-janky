@@ -7,7 +7,7 @@ set -e
 pid=0
 
 # launch migration
-rake db:migrate & pid="$!"
+bundle exec rake db:migrate & pid="$!"
 
 # launch db
 /bin/sh -c "wait $pid && /bin/sh -c \"bundle exec $@\"" & pid="$!"
